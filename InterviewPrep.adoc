@@ -11,8 +11,7 @@ ifndef::highlightjs-theme[:highlightjs-theme: foundation]
 :numbered:
 
 = Imad's Interview Prep Guide
-McGill University
-
+A guide to understanding algorithms you're probably never going to touch again.
 
 == Introduction
 <<<

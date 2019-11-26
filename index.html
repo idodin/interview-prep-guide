@@ -5,7 +5,7 @@
 <!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge"><![endif]-->
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="generator" content="Asciidoctor 1.5.6.1">
-<meta name="author" content="McGill University">
+<meta name="author" content="A guide to understanding algorithms you're probably never going to touch again.">
 <title>Imad&#8217;s Interview Prep Guide</title>
 <style>
 
@@ -650,12 +650,16 @@ blockquote, blockquote p { line-height: 1.6; color: #333333; }
 <div id="header">
 <h1>Imad&#8217;s Interview Prep Guide</h1>
 <div class="details">
-<span id="author" class="author">McGill University</span><br>
+<span id="author" class="author">A guide to understanding algorithms you're probably never going to touch again.</span><br>
 </div>
 <div id="toc" class="toc">
 <div id="toctitle">Table of Contents</div>
 <ul class="sectlevel1">
-<li><a href="#_introduction">1. Introduction</a></li>
+<li><a href="#_introduction">1. Introduction</a>
+<ul class="sectlevel2">
+<li><a href="#_my_rambles">1.1. My Rambles</a></li>
+</ul>
+</li>
 <li><a href="#_trees">2. Trees</a>
 <ul class="sectlevel2">
 <li><a href="#_binary_trees">2.1. Binary Trees</a>
@@ -665,9 +669,17 @@ blockquote, blockquote p { line-height: 1.6; color: #333333; }
 <li><a href="#_questions_on_binary_trees">2.1.3. Questions on Binary Trees</a></li>
 </ul>
 </li>
-<li><a href="#_binary_tree_traversals">2.2. Binary Tree Traversals</a>
+<li><a href="#_binary_search_trees">2.2. Binary Search Trees</a>
 <ul class="sectlevel3">
-<li><a href="#_depth_first_tree_traversals">2.2.1. Depth First Tree Traversals</a>
+<li><a href="#_binary_searching_on_a_bst">2.2.1. Binary Searching on a BST</a></li>
+<li><a href="#_questions_on_binary_search_trees">2.2.2. Questions on Binary Search Trees</a></li>
+<li><a href="#_inserting_and_deleting_nodes_in_bsts">2.2.3. Inserting and Deleting Nodes in BSTs</a>
+<ul class="sectlevel4">
+<li><a href="#_inserting_nodes_in_bst">Inserting Nodes in BST</a></li>
+<li><a href="#_deleting_nodes_in_bst">Deleting Nodes in BST</a></li>
+</ul>
+</li>
+<li><a href="#_depth_first_tree_traversals">2.2.4. Depth First Tree Traversals</a>
 <ul class="sectlevel4">
 <li><a href="#_pre_order_traversal">Pre-Order Traversal</a></li>
 <li><a href="#_post_order_traversal">Post-Order Traversal</a></li>
@@ -687,6 +699,34 @@ blockquote, blockquote p { line-height: 1.6; color: #333333; }
 <h2 id="_introduction">1. Introduction</h2>
 <div class="sectionbody">
 <div style="page-break-after: always;"></div>
+<div class="sect2">
+<h3 id="_my_rambles">1.1. My Rambles</h3>
+<div class="paragraph">
+<p>Hi! Welcome to my Interview Prep Guide! If you don&#8217;t already know me, my name is Imad Dodin, I&#8217;m in the fourth year of my Bachelor&#8217;s of Engineering (Software) at McGill University. At McGill, I think I&#8217;m mostly recognizable as Co-President and ICPC Coach for Compete McGill, McGill&#8217;s Competitive Programming club. In my 3rd year, I acted as Training Lead, and tried to make algorithms as accessible as possible for people - once you get them, they&#8217;re really fun!</p>
+</div>
+<div class="paragraph">
+<p>In the Summer of my 3rd Year, I interned at Amazon in Vancouver, where I worked on the Amazon Web Services S3 Index Control Plane team - it was a really cool summer and I learned a lot while working with a whole bunch of really smart and friendly people! I was lucky enough to get a return offer for full-time, but due to some delays with my graduation date, I decided that I&#8217;d try and get experience at another company this Summer and was thrilled to accept an offer last month to intern at Microsoft in Redmond.</p>
+</div>
+<div class="paragraph">
+<p>I decided to start writing this, largely because I miss writing and talking about Algorithms in a non-competitive environment (aside: I don&#8217;t really even do much coaching, our representatives are much too smart to listen to me). Interview Prep is really scary for a bunch of reasons, and I wanted to attempt to lessen the load on people going through it. This guide aims to try and explain Data Structures and Algorithms as simply as possible and without any added complexity (you need them for your interviews, let&#8217;s have fun and look at harder stuff another time), it aims to be a one-stop shop for pseudo-code, Java code, runtimes and LeetCode problems that I found useful when prepping myself and others.</p>
+</div>
+<div class="paragraph">
+<p>In short:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>I love algorithms and need more human interaction.</p>
+</li>
+<li>
+<p>It&#8217;s annoying to spend a whole bunch of time looking for stuff - I&#8217;ll try to put everything you need here (you might still need to Google if stuff is a little confusing).</p>
+</li>
+<li>
+<p>I&#8217;ve interviewed quite a bit (others have interviewed even more than me) - but I&#8217;ve also spent a whole bunch of time coaching, mock interviewing and presenting algorithms to students.</p>
+</li>
+</ul>
+</div>
+</div>
 </div>
 </div>
 <div class="sect1">
@@ -695,15 +735,29 @@ blockquote, blockquote p { line-height: 1.6; color: #333333; }
 <div style="page-break-after: always;"></div>
 <div class="sect2">
 <h3 id="_binary_trees">2.1. Binary Trees</h3>
+<div id="img-binary-trees-comic" class="imageblock">
+<div class="content">
+<img src="./img/BinaryTreesComic.jpg" alt="Binary Trees Comic">
+</div>
+<div class="title">Pants</div>
+</div>
 <div class="sect3">
 <h4 id="_what_is_a_binary_tree">2.1.1. What is a Binary Tree?</h4>
 <div class="paragraph">
-<p><em>A binary tree is a tree where each non-leaf node has a <strong>left</strong> subtree and a <strong>right</strong> subtree</em></p>
+<p>A binary tree is a tree where each non-leaf node has a <strong>left</strong> subtree and a <strong>right</strong> subtree.</p>
 </div>
 <div class="paragraph">
-<p><em>A binary tree is <strong>not</strong> a binary search tree - which maintains the above property but also says that:
-* Everything in the <strong>left</strong> subtree is <strong>less than</strong> the value of the node.
-* Everything in the <strong>righ</strong> subtree is <strong>greater than</strong> the value of the node.</em></p>
+<p>A binary tree is <strong>not</strong> a binary search tree - which maintains the above property but also says that:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Everything in the <strong>left</strong> subtree is <strong>less than</strong> the value of the node.</p>
+</li>
+<li>
+<p>Everything in the <strong>right</strong> subtree is <strong>greater than</strong> the value of the node.</p>
+</li>
+</ul>
 </div>
 <div class="paragraph">
 <p>In Java we can define a node as:</p>
@@ -744,7 +798,7 @@ blockquote, blockquote p { line-height: 1.6; color: #333333; }
 <div class="ulist">
 <ul>
 <li>
-<p><strong>Depth</strong> - The <strong>depth</strong> of a node is <strong>how many edges it is away from the root of the whole tree.</strong> - Note that this means <strong>root&#8217;s depth is 0</strong>.</p>
+<p><strong>Depth</strong> - The <strong>depth</strong> of a node is <strong>how many edges it is away from the root of the whole tree.</strong> - Note that this means <strong>root&#8217;s depth is 0</strong>. - <strong>Sometimes people define it as number of nodes, in which case the root&#8217;s depth is 1 - clarify this with your interviewer</strong>.</p>
 </li>
 <li>
 <p><strong>Height</strong> - The <strong>height</strong> of a node is <strong>maximum number of edges between it and a leaf</strong>.</p>
@@ -794,12 +848,279 @@ blockquote, blockquote p { line-height: 1.6; color: #333333; }
 </div>
 </div>
 <div class="sect2">
-<h3 id="_binary_tree_traversals">2.2. Binary Tree Traversals</h3>
+<h3 id="_binary_search_trees">2.2. Binary Search Trees</h3>
 <div class="paragraph">
-<p><em>There are <strong>four</strong> basic Tree Traversals. The three <strong>Depth-First Traversals</strong> - because they go as far deep down the tree as they can before coming back up, and <strong>Breadth-First Traversal</strong> a.k.a. <strong>Level-Order Traversal</strong> because they survey all possible things at a given level before moving down.</em></p>
+<p>As mentioned above, <strong>Binary Search Trees</strong> are binary trees where:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Everything in <strong>left subtree is less than the parent node</strong></p>
+</li>
+<li>
+<p>Everything in <strong>right subtree is greater than the parent node</strong></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>With a binary search tree we can, well, binary search!</p>
 </div>
 <div class="sect3">
-<h4 id="_depth_first_tree_traversals">2.2.1. Depth First Tree Traversals</h4>
+<h4 id="_binary_searching_on_a_bst">2.2.1. Binary Searching on a BST</h4>
+<div class="paragraph">
+<p>The algorithm is pretty straightforward for Binary Search Trees:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code>binarySearch(int key, TreeNode node):
+    if(node == null):
+        return node <b class="conum">(1)</b>
+
+    if(node.val == key):
+        return node <b class="conum">(2)</b>
+    else if(node.val &lt; key):
+        return binarySearch(node.left)
+    else if(node.val &gt; key):
+        return binarySearch(node.right)</code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<ol>
+<li>
+<p>Change this to <code>false</code> if you want to return a boolean instead.</p>
+</li>
+<li>
+<p>Change this to <code>true</code> if you want to return a boolean instead.</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>Where we start the function at root, i.e. <code>binarySearch(key, root)</code>. Note that the above function returns the node where we found the value, which will be null if the value doesn&#8217;t exist in the binary search tree. I provide comments to demonstrate how to change the function if we want to return a boolean instead.</p>
+</div>
+<div class="paragraph">
+<p>In Java Code:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">TreeNode binarySearch(int key, TreeNode node){
+    if(node == null || node.val == key){
+        return node;
+    }
+
+    if(node.val &lt; key) return binarySearch(node.left);
+    else return binarySearch(node.right);</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_questions_on_binary_search_trees">2.2.2. Questions on Binary Search Trees</h4>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://leetcode.com/problems/unique-binary-search-trees/"><strong>Unique Binary Search Trees</strong></a></p>
+</li>
+<li>
+<p><a href="https://leetcode.com/problems/validate-binary-search-tree/"><strong>Validate Binary Search Trees</strong></a></p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_inserting_and_deleting_nodes_in_bsts">2.2.3. Inserting and Deleting Nodes in BSTs</h4>
+<div class="paragraph">
+<p>Inserting and Deleting Nodes in a Binary Search Trees are common operations that you should be able to do.</p>
+</div>
+<div class="sect4">
+<h5 id="_inserting_nodes_in_bst">Inserting Nodes in BST</h5>
+<div class="paragraph">
+<p>We have a <strong>value, the key</strong> which we want to insert into a Binary Search Tree. In order to insert it into the BST, we need to travel down the tree until we <strong>find an appropriate slot for our new leaf</strong>. This means we insert the values as <strong>leafs at the bottom of the tree and not as intermediate nodes somewhere in the middle</strong> - because it makes our life simpler.</p>
+</div>
+<div class="paragraph">
+<p>Pseudocode:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code>insertNode(int key, TreeNode node):
+    if(node == null): <b class="conum">(1)</b>
+        return new TreeNode(key)
+
+    if(key &lt;= node.val): <b class="conum">(2)</b>
+        node.left = insertNode(key, node.left)
+    else: <b class="conum">(3)</b>
+        node.right = insertNode(key, node.right)
+
+    return node</code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<ol>
+<li>
+<p>If the current node is null, it means we moved down the tree and found a slot for the new leaf.</p>
+</li>
+<li>
+<p>If the key is less than or equal to the current node&#8217;s value, its appropriate slot should be somewhere in the left sub-tree, so we recurse down to the left sub-tree.</p>
+</li>
+<li>
+<p>If the key is greater than the current node&#8217;s value, its appropriate slot should be somewhere in the right sub-tree, so we recurse down to the right sub-tree.</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>Java Code:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">TreeNode insertNode(int key, TreeNode node){
+    if(node == null) return new TreeNode(key);
+
+    if(key &lt;= node.val) node.left = isertNode(key, node.left);
+    else node.right = insertNode(key, node.right);
+
+    return node;</code></pre>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_deleting_nodes_in_bst">Deleting Nodes in BST</h5>
+<div class="paragraph">
+<p>When deleting nodes in a BST, we have a value that we want to find and delete from the Binary Search Tree. There are 4 cases:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>The value doesn&#8217;t exist in the tree.</p>
+</li>
+<li>
+<p>The node we want to delete has 0 children (leaf)</p>
+</li>
+<li>
+<p>The node we want to delete has 1 child</p>
+</li>
+<li>
+<p>The node we want to delete has 2 children</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>From Geeks4Geeks, here are some illustration for these cases:</p>
+</div>
+<div class="paragraph">
+<p><strong>Leaf Node</strong>:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code>              50                            50
+           /     \         delete(20)      /   \
+          30      70       ---------&gt;    30     70
+         /  \    /  \                     \    /  \
+       20   40  60   80                   40  60   80</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Pretty easy: just remove the node!</p>
+</div>
+<div class="paragraph">
+<p><strong>1 Child</strong>:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code>              50                            50
+           /     \         delete(30)      /   \
+          30      70       ---------&gt;    40     70
+            \    /  \                          /  \
+            40  60   80                       60   80</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Again, easy: remove the node and replace it with the child.</p>
+</div>
+<div class="paragraph">
+<p><strong>2 Children</strong>:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code>              50                            60
+           /     \         delete(50)      /   \
+          40      70       ---------&gt;    40    70
+                 /  \                            \
+                60   80                           80</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Here, its a little more tricky. What we&#8217;ll do is remove the node (obviously) - we then need to find an appropriate node in one of the subtrees to replace this node. Logically there are two options:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>The smallest value in the right sub-tree (smallest thing that is bigger than the current node) - i.e. next biggest value.</p>
+</li>
+<li>
+<p>The largest value in the left sub-tree (largest thing that is smaller than the current node) - i.e. next smallest value.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>This is called finding the <strong>in-order successor</strong> of the current node. I&#8217;ll provide Java code below that does the first option.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">TreeNode delete(int key, TreeNode node){
+    if(node == null) return node; <b class="conum">(1)</b>
+
+    if(key &lt; node.val) node.left = delete(key, node.left); <b class="conum">(2)</b>
+    else if (key &gt; node.val) node.right = delete(key, node.right); <b class="conum">(3)</b>
+    else {
+        if(root.left == null) return node.right; <b class="conum">(4)</b>
+        else if(root.right == null) return node.left; <b class="conum">(5)</b>
+        node.val = findMin(node.right); <b class="conum">(6)</b>
+        node.right = delete(node.val, node.right); <b class="conum">(7)</b>
+    }
+
+    return node;
+}
+
+int findMin(TreeNode node){
+    while(node.left!=null){ <b class="conum">(8)</b>
+        node = node.left;
+    }
+    return node.left.val;
+}</code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<ol>
+<li>
+<p>If the current node is null, we&#8217;ve recursed the whole tree and didn&#8217;t find the value we want to delete.</p>
+</li>
+<li>
+<p>If the value we want to delete is less than the current node&#8217;s val, then if a node exists for it, it will be in the left subtree - recurse left.</p>
+</li>
+<li>
+<p>If the value we want to delete is greater than the current node&#8217;s val, then if a node exists for it, it will be in the right subtree - recurse right.</p>
+</li>
+<li>
+<p>We are on the node we want to delete - if it has one child - replace the node with the node that does exist, because (2) and (3) set a node&#8217;s child to be whatever is returned by this call, its enough to just return the child (which would cause the current node to be abandoned).</p>
+</li>
+<li>
+<p>Same as above, note that if we have 0 children, then (4) will be executed and we just replace the current node with null which is the same as just deleting it.</p>
+</li>
+<li>
+<p>Now we are in the case that we have two children - we need to find the minimum value in the right subtree. We set the current&#8217;s node value to be that value - essentially copying that minimum node.</p>
+</li>
+<li>
+<p>Now we have two copies of the minimum node in the right subtree, we need to delete the one that exists in the right sub-tree - now its as if we swapped the nodes.</p>
+</li>
+<li>
+<p>Finding the minimum value in a tree is trivial, just keep going to the left child until you hit the left-most leaf. Return that value.
+=== Binary Tree Traversals
+There are <strong>four</strong> basic Tree Traversals. The three <strong>Depth-First Traversals</strong> - because they go as far deep down the tree as they can before coming back up, and <strong>Breadth-First Traversal</strong> a.k.a. <strong>Level-Order Traversal</strong> because they survey all possible things at a given level before moving down. _</p>
+</li>
+</ol>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_depth_first_tree_traversals">2.2.4. Depth First Tree Traversals</h4>
 <div class="paragraph">
 <p>A note before we get started: often, you will hear that recursive implementations for these depth first traversals are pretty trivial. This is because the recursive implementations are essentially just the different combinations of three statements:</p>
 </div>
@@ -860,13 +1181,23 @@ recurse(me.right)</code></pre>
 
     while(!st.isEmpty(){
         TreeNode me = st.pop();
-        System.out.println(me.val);
+        System.out.println(me.val);<b class="conum">(1)</b>
 
         if(me.right != null) st.push(me.right);
-        if(me.left != null) st.push(me.left):
+        if(me.left != null) st.push(me.left):<b class="conum">(2)</b>
     }
 }</code></pre>
 </div>
+</div>
+<div class="colist arabic">
+<ol>
+<li>
+<p>Print (Visit) - before touching sub trees.</p>
+</li>
+<li>
+<p>Push Right then Left so that Left is popped first (Last In First Out).</p>
+</li>
+</ol>
 </div>
 <div class="paragraph">
 <p>Essentially, what we are doing is maintaining a stack to keep track of the order of visitation of the nodes.</p>
@@ -927,40 +1258,65 @@ visit(me);</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>Iteratively:</p>
+<p>Iteratively (this one is the most difficult - I suggest drawing it out):</p>
 </div>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">void iterativePostOrder(TreeNode node){
     Stack&lt;TreeNode&gt; st = new Stack&lt;&gt;();
 
-    if(node != null){ st.push(node); }
-    TreeNode prev = null;
+    if(node != null){ st.push(node); } <b class="conum">(1)</b>
+    TreeNode prev = null; <b class="conum">(2)</b>
     while(!st.isEmpty()){
-        TreeNode current = st.peek();
-        if(prev == null || prev.left == current || prev.right == current){
+        TreeNode current = st.peek();<b class="conum">(3)</b>
+        if(prev == null || prev.left == current || prev.right == current){ <b class="conum">(4)</b>
             if(current.left != null) st.push(current.left);
             else if (current.right!= null) st.push(current.right);
             else{
                 st.pop();
                 System.out.println(current.val);
             }
-        else if(current.left == prev){
+        else if(current.left == prev){<b class="conum">(5)</b>
             if(current.right != null) st.push(current.right);
             else {
                 st.pop();
                 System.out.println();
             }
         }
-        else if(current.right == prev){
+        else if(current.right == prev){<b class="conum">(6)</b>
             st.pop()
             System.out.println();
         }
 
-        prev = current;
+        prev = current;<b class="conum">(7)</b>
     }
 }</code></pre>
 </div>
+</div>
+<div class="colist arabic">
+<ol>
+<li>
+<p>If root not null, start the traversal.</p>
+</li>
+<li>
+<p>On any given iteration of the while-loop, keep track of the node we visited on the iteration before. This helps us know whether we have moved up the Binary Tree or are still moving down.</p>
+</li>
+<li>
+<p>We peek at the Stack (get the top value without popping it) - We only decide to remove it if we visit the node - which will only ever be done if the left and right sub-trees are visited (in that order).</p>
+</li>
+<li>
+<p>This is the big one - this block says the following: Prioritize moving down the left subtree first, then the right - Only if there are no sub-trees (we&#8217;re at a leaf), do you pop the node from the stack and visit it.</p>
+</li>
+<li>
+<p>If the last node we visited was left of the current node, it means that we&#8217;ve visited everything in the left sub-tree. In this case, let&#8217;s start visiting the right sub-tree if it exists, otherwise pop the node and visit it.</p>
+</li>
+<li>
+<p>If the last node we visited was right of the current node, it means we&#8217;ve visited all the sub-trees (because we already enforced that left sub-tree needs to have been visited for us to start visiting the right sub-tree). In this case, there is nothing left for us to do but visit the current node and pop it from the stack.</p>
+</li>
+<li>
+<p>This iteration&#8217;s current is next iteration&#8217;s previous.</p>
+</li>
+</ol>
 </div>
 </div>
 <div class="sect4">
@@ -1001,17 +1357,30 @@ recurse(me.right);</code></pre>
     Node current = node;
 
     while(current != null || !st.isEmpty()){
-        while(current != null){
+        while(current != null){ <b class="conum">(1)</b>
             st.push(current);
             current = current.left;
         }
 
-        current = st.pop();
+        current = st.pop(); <b class="conum">(2)</b>
         System.out.println(current.val);
-        current = current.right;
+        current = current.right; <b class="conum">(3)</b>
     }
 }</code></pre>
 </div>
+</div>
+<div class="colist arabic">
+<ol>
+<li>
+<p>Keep pushing left node&#8217;s onto the stack - this ensures that we visit the left subtrees first.</p>
+</li>
+<li>
+<p>Pop the current node from the Stack and visit it, because of Last In First Out ordering and (1), if a node is popped, it&#8217;s left sub-tree needs to have been visited.</p>
+</li>
+<li>
+<p>Set the current node to be the right child so that we can now start doing the In-Order traversal for the right sub-tree.</p>
+</li>
+</ol>
 </div>
 </div>
 <div class="sect4">
@@ -1033,6 +1402,9 @@ recurse(me.right);</code></pre>
 <li>
 <p><a href="https://leetcode.com/problems/construct-binary-tree-from-inorder-and-postorder-traversal/"><strong>Reconstruct Tree from In-Order and Post-Order Traversals</strong></a></p>
 </li>
+<li>
+<p><a href="https://leetcode.com/problems/kth-smallest-element-in-a-bst/solution/"><strong>Kth Smalles Element in a Binary Search Tree</strong></a></p>
+</li>
 </ul>
 </div>
 </div>
@@ -1043,7 +1415,7 @@ recurse(me.right);</code></pre>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2019-11-26 07:20:16 UTC
+Last updated 2019-11-26 20:14:05 UTC
 </div>
 </div>
 <link rel="stylesheet" href="./highlight.js/styles/foundation.min.css">
