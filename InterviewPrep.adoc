@@ -1,0 +1,24 @@
+ifdef::env-github,env-browser[:outfilesuffix: .adoc]
+:rootdir: .
+:stylesheet: css/adoc-colony.css
+ifndef::source-highlighter[:source-highlighter: highlightjs]
+ifndef::highlightjsdir[:highlightjsdir: {rootdir}/highlight.js]
+ifndef::highlightjs-theme[:highlightjs-theme: foundation]
+:imagesdir: {rootdir}/img
+:toclevels: 4
+:toc:
+:sectiondir: .
+:numbered:
+
+= Imad's Interview Prep Guide
+McGill University
+
+
+== Introduction
+<<<
+include::{sectiondir}/01-1-Introduction.adoc[]
+
+== Trees
+<<<
+include::{sectiondir}/02-1-BinaryTrees.adoc[]
+
