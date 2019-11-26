@@ -1,0 +1,13 @@
+=== My Rambles
+Hi! Welcome to my Interview Prep Guide! If you don't already know me, my name is Imad Dodin, I'm in the fourth year of my Bachelor's of Engineering (Software) at McGill University. At McGill, I think I'm mostly recognizable as Co-President and ICPC Coach for Compete McGill, McGill's Competitive Programming club. In my 3rd year, I acted as Training Lead, and tried to make algorithms as accessible as possible for people - once you get them, they're really fun! 
+
+In the Summer of my 3rd Year, I interned at Amazon in Vancouver, where I worked on the Amazon Web Services S3 Index Control Plane team - it was a really cool summer and I learned a lot while working with a whole bunch of really smart and friendly people! I was lucky enough to get a return offer for full-time, but due to some delays with my graduation date, I decided that I'd try and get experience at another company this Summer and was thrilled to accept an offer last month to intern at Microsoft in Redmond.  
+
+I decided to start writing this, largely because I miss writing and talking about Algorithms in a non-competitive environment (aside: I don't really even do much coaching, our representatives are much too smart to listen to me). Interview Prep is really scary for a bunch of reasons, and I wanted to attempt to lessen the load on people going through it. This guide aims to try and explain Data Structures and Algorithms as simply as possible and without any added complexity (you need them for your interviews, let's have fun and look at harder stuff another time), it aims to be a one-stop shop for pseudo-code, Java code, runtimes and LeetCode problems that I found useful when prepping myself and others. 
+
+In short:
+
+* I love algorithms and need more human interaction.
+* It's annoying to spend a whole bunch of time looking for stuff - I'll try to put everything you need here (you might still need to Google if stuff is a little confusing).
+* I've interviewed quite a bit (others have interviewed even more than me) - but I've also spent a whole bunch of time coaching, mock interviewing and presenting algorithms to students. 
+
