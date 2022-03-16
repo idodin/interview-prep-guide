@@ -2,10 +2,10 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge"><![endif]-->
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="generator" content="Asciidoctor 1.5.6.1">
-<meta name="author" content="A guide to understanding algorithms you're probably never going to touch again.">
+<meta name="generator" content="Asciidoctor 2.0.17">
+<meta name="author" content="A guide to understanding algorithms you&#8217;re probably never going to touch again.">
 <title>Imad&#8217;s Interview Prep Guide</title>
 <style>
 
@@ -645,12 +645,13 @@ blockquote, blockquote p { line-height: 1.6; color: #333333; }
 							    
 
 </style>
+<link rel="stylesheet" href="./highlight.js/styles/foundation.min.css">
 </head>
 <body class="article">
 <div id="header">
 <h1>Imad&#8217;s Interview Prep Guide</h1>
 <div class="details">
-<span id="author" class="author">A guide to understanding algorithms you're probably never going to touch again.</span><br>
+<span id="author" class="author">A guide to understanding algorithms you&#8217;re probably never going to touch again.</span><br>
 </div>
 <div id="toc" class="toc">
 <div id="toctitle">Table of Contents</div>
@@ -872,7 +873,7 @@ blockquote, blockquote p { line-height: 1.6; color: #333333; }
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code>binarySearch(int key, TreeNode node):
+<pre class="highlightjs highlight"><code class="language-none hljs">binarySearch(int key, TreeNode node):
     if(node == null):
         return node <b class="conum">(1)</b>
 
@@ -940,7 +941,7 @@ blockquote, blockquote p { line-height: 1.6; color: #333333; }
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code>insertNode(int key, TreeNode node):
+<pre class="highlightjs highlight"><code class="language-none hljs">insertNode(int key, TreeNode node):
     if(node == null): <b class="conum">(1)</b>
         return new TreeNode(key)
 
@@ -1009,7 +1010,7 @@ blockquote, blockquote p { line-height: 1.6; color: #333333; }
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code>              50                            50
+<pre class="highlightjs highlight"><code class="language-none hljs">              50                            50
            /     \         delete(20)      /   \
           30      70       ---------&gt;    30     70
          /  \    /  \                     \    /  \
@@ -1024,7 +1025,7 @@ blockquote, blockquote p { line-height: 1.6; color: #333333; }
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code>              50                            50
+<pre class="highlightjs highlight"><code class="language-none hljs">              50                            50
            /     \         delete(30)      /   \
           30      70       ---------&gt;    40     70
             \    /  \                          /  \
@@ -1039,7 +1040,7 @@ blockquote, blockquote p { line-height: 1.6; color: #333333; }
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code>              50                            60
+<pre class="highlightjs highlight"><code class="language-none hljs">              50                            60
            /     \         delete(50)      /   \
           40      70       ---------&gt;    40    70
                  /  \                            \
@@ -1165,7 +1166,7 @@ There are <strong>four</strong> basic Tree Traversals. The three <strong>Depth-F
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code>visit(me)
+<pre class="highlightjs highlight"><code class="language-none hljs">visit(me)
 recurse(me.left)
 recurse(me.right)</code></pre>
 </div>
@@ -1252,7 +1253,7 @@ recurse(me.right)</code></pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code>recurse(me.left);
+<pre class="highlightjs highlight"><code class="language-none hljs">recurse(me.left);
 recurse(me.right);
 visit(me);</code></pre>
 </div>
@@ -1341,7 +1342,7 @@ visit(me);</code></pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code>recurse(me.left);
+<pre class="highlightjs highlight"><code class="language-none hljs">recurse(me.left);
 visit(me);
 recurse(me.right);</code></pre>
 </div>
@@ -1415,11 +1416,15 @@ recurse(me.right);</code></pre>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2019-11-26 20:14:05 UTC
+Last updated 2022-03-16 00:22:52 UTC
 </div>
 </div>
-<link rel="stylesheet" href="./highlight.js/styles/foundation.min.css">
 <script src="./highlight.js/highlight.min.js"></script>
-<script>hljs.initHighlighting()</script>
+<script>
+if (!hljs.initHighlighting.called) {
+  hljs.initHighlighting.called = true
+  ;[].slice.call(document.querySelectorAll('pre.highlight > code')).forEach(function (el) { hljs.highlightBlock(el) })
+}
+</script>
 </body>
 </html>
